@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { login, signup } from "../action/action";
 
-export default function LoginPage() {
+export default async function LoginPage() {
   return (
     <form>
       <label htmlFor="email">Email:</label>
