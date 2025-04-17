@@ -1,15 +1,28 @@
+import { TodoForm } from "@/components/getTodoList";
+import { todoForm } from "../action/todo";
+import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
+
 export default async function Todo() {
+  const supabase = await createClient();
+  const { data } = await supabase.from("supatodo").select();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) redirect("/login");
+
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-xl mx-auto bg-white rounded-2xl shadow-md p-6">
+    <div className=" h-screen items-baseline pt-20 px-10 flex justify-center bg-gray-100 text-gray-800   md:-pt-10  ">
+      <div className="w-full md:w-xl  mx-auto bg-white rounded-2xl shadow-md p-6">
         <h1 className="text-2xl font-bold mb-4 text-center">📝 My Todo List</h1>
 
-        {/* Input for new todo */}
-        <form className="flex gap-2 mb-4">
+        <form className="flex gap-2 mb-4" action={todoForm}>
           <input
-            type="text"
-            placeholder="Add a new task..."
+            pattern="^\S+$"
             className="flex-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            name="todo"
           />
           <button
             type="submit"
@@ -18,18 +31,11 @@ export default async function Todo() {
             Add
           </button>
         </form>
-
-        {/* Todo items (example list) */}
-        <ul className="space-y-2">
-          <li className="flex justify-between items-center bg-gray-100 p-2 rounded-lg">
-            <span>✅ Learn Tailwind</span>
-            <button className="text-red-500 hover:text-red-700">🗑️</button>
-          </li>
-          <li className="flex justify-between items-center bg-gray-100 p-2 rounded-lg">
-            <span>📚 Build a todo app</span>
-            <button className="text-red-500 hover:text-red-700">🗑️</button>
-          </li>
-        </ul>
+        {data?.map((post) => (
+          <div key={post.id}>
+            <TodoForm todo={post.todo} />
+          </div>
+        ))}
       </div>
     </div>
   );
