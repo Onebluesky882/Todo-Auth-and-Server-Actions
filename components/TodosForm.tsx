@@ -15,7 +15,6 @@ export const TodoForm = () => {
   const supabase = createClient();
   const [todos, setTodos] = useState<Todo[]>([]);
   const [input, setInput] = useState("");
-  const router = useRouter();
 
   const fetchData = async () => {
     const { data } = await supabase.from("supatodo").select();

@@ -50,5 +50,5 @@ export default async function signOut(formData: FormData) {
   const supabase = await createClient();
   await supabase.auth.signOut();
 
-  await redirect("/");
+  redirect("/");
 }
