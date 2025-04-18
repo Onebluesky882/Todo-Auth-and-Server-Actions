@@ -6,8 +6,9 @@ export async function todoForm(formData: FormData) {
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  const text = formData.get("todo");
 
+  const text = formData.get("todo")?.toString().trim();
+  if (!user || !text) return;
   if (user) {
     const data = {
       todo: text,
@@ -16,7 +17,14 @@ export async function todoForm(formData: FormData) {
 
     const { error } = await supabase.from("supatodo").insert(data);
     if (error) {
-      console.log("error :", error);
+      console.log("Insert error:", error.message);
     }
   }
+}
+
+export async function removeTodo(formData: FormData) {
+  const id = formData.get("id") as string;
+
+  const supabase = await createClient();
+  await supabase.from("supatodo").delete().eq("id", id);
 }
