@@ -43,10 +43,10 @@ export default async function Home() {
             Get Started
           </Link>
           <Link
-            href="/about"
+            href="/todo"
             className="text-blue-600 border border-blue-600 px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition"
           >
-            Learn More
+            Todo List
           </Link>
         </div>
       </header>

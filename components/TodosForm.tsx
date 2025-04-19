@@ -17,8 +17,17 @@ export const TodoForm = () => {
   const [input, setInput] = useState("");
 
   const fetchData = async () => {
-    const { data } = await supabase.from("supatodo").select();
-    if (data) setTodos(data);
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    if (user) {
+      const { data: todos } = await supabase
+        .from("supatodo")
+        .select()
+        .eq("user_id", user.id);
+      if (todos) setTodos(todos);
+    }
   };
 
   useEffect(() => {

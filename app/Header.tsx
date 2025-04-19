@@ -13,7 +13,7 @@ export default async function Header() {
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Logo */}
         <div className="text-xl font-bold">
-          <Link href="/">Logo</Link>
+          <Link href="/">WanSing Groups</Link>
         </div>
 
         {/* Navigation */}
@@ -21,8 +21,8 @@ export default async function Header() {
           <Link href="/todo" className="hover:underline">
             Todo
           </Link>
-          <Link href="/about" className="hover:underline">
-            About
+          <Link href="/about-me" className="hover:underline">
+            About Me
           </Link>
         </nav>
 
