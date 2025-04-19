@@ -10,7 +10,7 @@ export default async function Home() {
       {/* Hero Section */}
       <header className="max-w-7xl mx-auto px-6 py-20 text-center">
         <h1 className="text-5xl font-extrabold mb-6 leading-tight">
-          รับสร้างโปรเจ็ค Full-Stack
+          Full-Stack
           <span className="text-blue-600">TaskMate</span>
         </h1>
         <p className="text-lg text-gray-600 max-w-xl mx-auto mb-8">
