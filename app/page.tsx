@@ -1,12 +1,17 @@
+import { Metadata } from "next";
 import Link from "next/link";
-
+export const metadata: Metadata = {
+  title: "Todo app server-action next js รับสร้างโปรเจ็ค full-stack",
+  description: "Todo app server-action next js รับสร้างโปรเจ็ค full-stack",
+};
 export default async function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-gray-100 text-gray-800">
       {/* Hero Section */}
       <header className="max-w-7xl mx-auto px-6 py-20 text-center">
         <h1 className="text-5xl font-extrabold mb-6 leading-tight">
-          Stay Organized with <span className="text-blue-600">TaskMate</span>
+          รับสร้างโปรเจ็ค Full-Stack
+          <span className="text-blue-600">TaskMate</span>
         </h1>
         <p className="text-lg text-gray-600 max-w-xl mx-auto mb-8">
           Your ultimate ToDo app to boost productivity and keep your life on
